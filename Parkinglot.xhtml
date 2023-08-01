@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
+<head>
+    <title> Parking Slots</title>
+    <link rel="stylesheet" type="text/css" href="style.css"></link>
+    <style>
+    
+    
+    
+    body {
+        font-family: Arial, sans-serif;
+        background-color: ;
+        padding: 20px;
+        background-image: url(#{request.contextPath}/img/slot10.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        /* background-attachment: scroll; */
+        background-attachment: fixed;
+    }
+
+   body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+    
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    
+    #selectedSlotMessage {
+      font-weight: bold;
+      color: #333;
+    }
+    
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 20px auto;
+    }
+    
+    .slot-button {
+      padding: 10px;
+      font-size: 14px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    .slot-button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    
+    .slot-button:hover {
+      background-color: #e6e6e6;
+    }
+    
+    #selectedSlotMessage {
+      font-size: 16px;
+    }
+    
+    </style>
+</head>
+<body>
+<h:form>
+<center>
+<h2 style="color:red"> Select slots</h2>
+<h:panelGrid columns="4">
+  <c:forEach var="i" begin="1" end="20">
+  <c:set var="slot" value="GF#{i}" />
+    <h:commandButton value=" #{slot}" action="#{staffDao.setSelectedSlot(slot)}" update="selectedSlotMessage" 
+    disabled="#{staffDao.isSlotBooked(slot)}"/>
+  </c:forEach>
+</h:panelGrid>
+
+<!-- <p>Selected Slot Number: <span id="selectedSlotMessage">#{staffDao.selectedSlot}</span></p>
+ -->
+<div class="mb-10 formI" > 
+      
+        <a href= "ParkingMenu.xhtml"  style="color:white"> Back</a>
+			</div>
+</center>
+
+
+</h:form>
+
+</body>
+</html>

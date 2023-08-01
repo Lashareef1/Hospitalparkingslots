@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+<title>staffdetails</title>
+</h:head>
+
+
+<h:body>
+ <center>
+<br></br>
+			<h2>
+				<h:outputText value="StaffDetails" />
+			</h2>
+	<form >
+		<div class="table-style">
+			<h:dataTable id="bookings" value="#{staffDao.showstaffdetails(SignupDao.sig.userid)}" var="hVal"    border="1"   class="compact stripe cell-border" >
+				<h:column>
+					<f:facet name="header">Booking ID</f:facet>
+					<h:outputText value="#{hVal.us}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Booking ID</f:facet>
+					<h:outputText value="#{hVal.bookingId}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Vehicle Number</f:facet>
+					<h:outputText value="#{hVal.vehicleNumber}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Start date</f:facet>
+					<h:outputText value="#{hVal.startDate}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">End date</f:facet>
+					<h:outputText value="#{hVal.endDate}" />
+				</h:column>
+				
+				
+				
+			</h:dataTable>
+		
+
+	</div>
+	</form>
+			<center>
+			</center>
+			</center>
+			
+
+</h:body>
+
+</html>

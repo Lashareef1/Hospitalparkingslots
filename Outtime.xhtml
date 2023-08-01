@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<style>
+body {
+	background-image: url(#{request.contextPath}/img/img1.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0;
+}
+</style>
+</h:head>
+
+<h:body>
+	<h:form>
+		<center>
+			<h1>ExitTimings</h1>
+
+			<h:outputLabel for="outdate" value="OutDate:" />
+			<p:calendar id="outdate"
+			value="#{admin.outdate}"
+				pattern="dd/MM/yyyy" showOn="button" view="year" required="true"
+				requiredMessage="Please enter Exit date" mindate="@today" maxdate="@today">
+			</p:calendar>
+			<br>
+				 <h:message for="outdate" style="color: gold" />
+			 </br>
+
+			<h:outputLabel for="outtime" value="OutTime:" />
+			<p:inputText id="outtime" value="#{admin.outtime}" mask="99:99" requiredMessage="Please Exit Time"
+				placeholder="HH:mm" onfocus="setDefaultTime(this)">
+				
+			</p:inputText>
+			
+			<br>  <h:message for="outtime" style="color: red" /></br>
+			
+			 Here PenaltyAmount is ,if visitor parked in wrong place
+			visitor has to pay penalty
+			 <br> </br>
+			<h:outputText for="penaltyamount" value="PenaltyAmount:" />
+			<p:inputText id="penaltyamount" value="#{admin.penaltyamount}">
+			</p:inputText>
+			<br> </br>
+			<h:commandButton value="Submit"
+				action="#{admindao.calculateExitTime(admin)}" />
+			<br> </br>
+		 <h:messages globalOnly="true" style="color:red"/> 
+		 
+		 
+   
+    
+			<!-- <p:messages globalOnly="true" showDetail="true" autoUpdate="true" />
+ -->
+			<div class="mb-10 formI">
+				<a href="AdminMenu.xhtml" style="color: black"> Back</a>
+			</div>
+
+		</center>
+	</h:form>
+
+	<script>
+		function setDefaultTime(inputField) {
+			var now = new Date();
+			var hours = now.getHours().toString().padStart(2, '0');
+			var minutes = now.getMinutes().toString().padStart(2, '0');
+			var currentTime = hours + ':' + minutes;
+			inputField.value = currentTime;
+		}
+	</script>
+</h:body>
+</html>

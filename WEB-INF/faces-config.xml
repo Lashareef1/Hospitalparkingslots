@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee" 
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee /WEB-INF/schema/web-facesconfig_2_0.xsd" 
+              version="2.0" metadata-complete="false">
+    <!-- This file must be present with our jar, even if it is empty.  Otherwise, our Java annotations won't get scanned! -->
+    
+    <navigation-rule>
+    <from-view-id>/page1.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>Search1.xhtml?faces-redirect=true</from-outcome>
+        <to-view-id>/Search1.xhtml</to-view-id>
+    </navigation-case>
+
+
+
+
+
+  
+  
+  <navigation-rule>
+  <from-view-id>/yourCurrentPage.xhtml</from-view-id>
+  <navigation-case>
+    <from-action>#{staffDao.setSelectedSlot}</from-action>
+    <to-view-id>/Staff.xhtml</to-view-id>
+  </navigation-case>
+</navigation-rule>
+  
+  
+  
+  <navigation-rule>
+  <from-view-id>/Resetpassword.xhtml</from-view-id>
+  <navigation-case>
+    <from-action>#{SignupDao.resetPas(SignupDao.userName, SignupDao.newpassword, SignupDao.oldpassword)}</from-action>
+    <to-view-id>/Resetpassword.xhtml</to-view-id>
+  </navigation-case>
+</navigation-rule>
+  
+  <navigation-rule>
+  <from-view-id>/Forgotpassword.xhtml</from-view-id>
+  <navigation-case>
+    <from-action>#{SignupDao.forgotPassword(SignupDao.userName, SignupDao.newpassword, SignupDao.oldpassword)}</from-action>
+    <to-view-id>/Forgotpassword.xhtml</to-view-id>
+  </navigation-case>
+</navigation-rule>
+  
+  
+  <navigation-rule>
+  <from-view-id>/AdminDetails.xhtml</from-view-id>
+  <navigation-case>
+    <from-action>#{admindao.Addadmin(admin)}</from-action>
+    <to-view-id>/AdminDetails.xhtml</to-view-id>
+  </navigation-case>
+</navigation-rule>
+  
+  
+  
+  
+</navigation-rule>
+</faces-config>

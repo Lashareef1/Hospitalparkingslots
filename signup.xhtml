@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"	
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:head>
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+ 	 <!-- <link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link> -->
+    <!-- <link rel="stylesheet" herf="style.css"/> 
+ -->
+ 
+    <style>
+	.Bimage {
+	background-image: url(#{request.contextPath}/img/slot5.jpg);
+	 background-repeat: no-repeat; 
+	background-size: cover;
+	/* background-attachment: scroll; */
+	background-attachment: fixed;
+}
+/* 	body .ui-panel>div:last-of-type {
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	margin-bottom: 32px;
+} */
+	body .ui-panel .ui-panel-content {
+	background-color: transparent;
+	color: white;
+	width: 32rem;
+	height: 1450px;
+	font-weight: 10px;
+	
+	border: 5px solid rgba(0, 255, 255, 0.4);
+	border-radius: 20px;
+	box-shadow: 3px 5px 30px white inset;
+	backdrop-filter: blur(10px);
+	
+	
+}
+
+.error-message {
+  color: red;
+}
+
+/* 
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+ */
+/* .input-container {
+  display: -ms-flexbox; 
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+} */
+/* 
+.icon {
+  padding: 10px;
+  background: dodgerblue;
+  color: black;
+  min-width: 50px;
+  text-align: center;
+} */
+
+/* .input-field {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
+ */
+/* .input-field:focus {
+  border: 2px solid dodgerblue;
+}
+ */
+/* Set a style for the submit button */
+.btn {
+  background-color: dodgerblue;
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+/* .btn:hover {
+  opacity: 1;
+} */
+</style>
+	<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+
+</h:head>
+
+
+
+<h:body onload="clearForm()" class="Bimage">
+	<f:facet name="last">
+		<h:outputStylesheet library="default" name="css/style.css" />
+	</f:facet>
+
+
+ 
+
+	<div align="center">
+		<br />
+		<h1 class="heading">Registration</h1>
+		<div style="width: 500px; height: 20px; margin: 0px;" class="frm">
+			<h:form id="signupForm" styleClass="my-form">
+			
+			
+		
+				<p:panel id="panel-signup">
+					<!-- enable focus component -->
+					<p:focus context="panel-signup" />
+				 Your Name :
+				<br />
+					<br />
+					<div class="new iconBox"  >
+						<i class="fa fa-user" aria-hidden="true"></i>
+					</div>
+					<p:inputText id="yourName"   required="true" autocomplete="on"
+						label="Please Enter Your Name" size="40"
+						validatorMessage="Special Characters and Numbers Not Allowed in Name"
+						requiredMessage="Please Enter Your name." value="#{Signup.name}">
+						<f:validateRegex pattern="^[a-zA-Z]+$"></f:validateRegex> 
+					
+					</p:inputText>
+
+
+					<p:watermark for="yourName" value="Name *" />
+					<br />
+					<h:message for="yourName" style="color:gold" />
+					<br />
+					<br />
+				
+				
+			 User Name :
+				<br />
+					<br />
+					<div class="new iconBox">
+						<i class="fa fa-user-circle" aria-hidden="true"></i>
+					</div>
+					<p:inputText id="userName" required="true" autocomplete="on"
+						label="Please Enter User Name" size="40"
+						requiredMessage="Please enter User name."
+						value="#{Signup.userName}">
+						<f:validator validatorId="com.java.proNameVerify" /> 
+						
+					</p:inputText>
+					<p:watermark for="userName" value="userName *" />
+					<br />
+					<h:message for="userName" style="color:gold" />
+					<br />
+					<br />
+				
+				 Mobile Number :
+				<br />
+					<br />
+					<div class="new iconBox">
+						<i class="fa fa-phone" aria-hidden="true"></i>
+					</div>
+					<p:inputText id="mobileNo" required="true" maxlength="10"
+						label="Please Enter mobileNo" size="40"
+						requiredMessage="Please enter MobileNo."
+						value="#{Signup.mobileNo}" validatorMessage="Please enter valid Numbers it should start with 6">
+						 <f:validator validatorId="com.java.MobileVerify"/>
+ 
+						
+					</p:inputText>
+					<p:watermark for="mobileNo" value="mobileNo *" />
+					<br />
+					<h:message for="mobileNo" style="color:gold" />
+					<br />
+					<br />
+		 Email Id :
+					<div class="new iconBox">
+						<i class="fa fa-envelope" aria-hidden="true"></i>
+					</div>
+					<p:inputText id="email" required="true" label="Please Enter Email"
+						size="40" requiredMessage="Please enter Email."	validatorMessage="Please Enter Valid Email like abcd@gmail.com"	value="#{Signup.email}">
+						<f:validator validatorId="com.java.EmailVerify" />
+						
+						<p:watermark for="email" value="email *" />
+					</p:inputText>
+					<br>
+					</br>
+					<h:message id="emailMessage" for="email" style="color:gold" />
+						<br></br>							
+				
+				
+				<br></br>
+			
+						<h:outputLabel for="dob" value="Date of Birth:" />
+
+						<p:calendar id="dob" value="#{Signup.dob}" pattern="dd/MM/yyyy"
+							showOn="button" view="year" required="true"
+							requiredMessage="DOB is mandatory" mindate="01/01/1900"
+							maxdate="30/06/2005"
+							 validatorMessage="Invalid date of birth. The person's age should be at least 18 years old.">
+						</p:calendar><br></br>
+						<h:message id="dobMessage" for="dob" style="color:gold" />
+				
+					<br></br>
+					<br></br>
+					<br></br>
+				
+				Select Category:
+				<br />
+					<br />
+					<p:selectOneRadio id="category" required="true"
+						value="#{Signup.category}">
+						<f:selectItems value="#{Signup.categoryop}" size="40" />
+					</p:selectOneRadio>
+					<br />
+
+
+					<div class="new iconBox">
+						<div class="sLable">Security Questions 1:</div>
+						<br></br>
+						<div class="sInput">
+							<p:selectOneMenu id="securityQuestion1" required="true"
+								label="Security Questions"
+								requiredMessage="Please select a security question."
+								value="#{Signup.securityquestions1}" >
+								<f:selectItem itemLabel="Select Security Question" itemValue="" />
+								<f:selectItem itemLabel="Your first school's name" itemValue="1" />
+								<f:selectItem itemLabel="Your pet's name" itemValue="2" />
+								<f:selectItem itemLabel="Your favorite cricketer's name" itemValue="3" />
+								<f:selectItem itemLabel="Your favorite sports" itemValue="4" />
+								 <f:ajax event="change" execute="@this" render="securityAnswer1" /> 
+								
+								  <p:ajax update="securityQuestion2" />
+											</p:selectOneMenu>
+											<br></br>
+											   <h:message for="securityQuestion1" style="color:gold"  />
+						</div></div>
+					<br></br>
+
+					<div class="new iconBox">
+						<div class="sLable">Security Answer 1:</div>
+						<br></br>
+						<div class="sInput">
+							<p:inputText id="securityAnswer1" required="true"
+								label="Security Answer" size="40"
+								requiredMessage="Please enter the security answer."
+								value="#{Signup.securityAnswer1}" />
+								
+								<p:watermark for="securityAnswer1" value=" enter your security answer*" />
+								<br></br>
+								<h:message for="securityAnswer1" style="color:gold" />
+						</div>
+					</div>
+				
+					<div class="new iconBox ">
+				<div class="sLable">Security Questions 2:</div>
+<br></br>
+<div class="sInput">
+    <p:selectOneMenu id="securityQuestion2" required="true" label="Security Questions"
+        requiredMessage="Please select a security question." validatorMessage="Both security questions cannot be the same"
+        value="#{Signup.securityquestions2}">
+        <f:selectItem itemLabel="Select Security Question" itemValue="" />
+        <f:selectItem itemLabel="Your first school's name" itemValue="1" disabled="#{Signup.securityquestions1 eq '1'}" />
+        <f:selectItem itemLabel="Your pet's name" itemValue="2" disabled="#{Signup.securityquestions1 eq '2'}" />
+        <f:selectItem itemLabel="Your favorite cricketer's name" itemValue="3" disabled="#{Signup.securityquestions1 eq '3'}" />
+        <f:selectItem itemLabel="Your favorite sports" itemValue="4" disabled="#{Signup.securityquestions1 eq '4'}" />
+    </p:selectOneMenu>
+ <br></br>
+    <h:message for="securityQuestion2"  style="color:gold"  />
+</div>
+					</div>
+					<br></br>
+					<div class="new iconBox">
+						<div class="sLable">Security Answer 2:</div>
+						<br></br>
+						<div class="sInput">
+							<p:inputText id="securityAnswer" required="true"
+								label="Security Answer" size="40"
+								requiredMessage="Please enter the security answer."
+								value="#{Signup.securityAnswer2}" />
+								<p:watermark for="securityAnswer" value=" enter your security answer*" />
+								<br>
+								</br>
+								<h:message for="securityAnswer" style="color:gold" />
+						</div>
+					</div>
+				
+				
+				
+				Enter Your Password :
+				<br />
+					<br />
+					<div class="new iconBox">
+						<i class="fa fa-user-secret" aria-hidden="true"></i>
+					</div>
+					<p:password id="password" required="true" label="password"
+						size="40" requiredMessage="Please enter your password."
+						match="confirmPassword" validatorMessage="one Uppercase, one lowercase, one digit, one special char,must be atleast 8 char long."
+					 value="#{Signup.password}" maxlength="20">
+					<f:validateRegex pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" /> 
+				
+					</p:password>
+					<p:watermark for="password" value="Password *" />
+					<br />
+					<h:message for="password" style="color:gold" />
+					<br />
+				
+					Confirm Password :
+				<br />
+					<br />
+					<div class="new iconBox">
+						<i class="fa fa-user-secret" aria-hidden="true"></i>
+					</div>
+					<p:password id="confirmPassword" required="true" size="40"
+						requiredMessage="Please confirm your password."
+						label="confirmPassword"  validatorMessage="one Uppercase, one lowercase, one digit, one special char,must be atleast 8 char long." value="#{confirmPassword}" maxlength="20">
+					<f:validateRegex pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
+						  
+				</p:password>
+					<p:watermark for="confirmPassword" value="Type Password Again *" />
+					<br />
+					<h:message for="confirmPassword" style="color:gold" />
+					<br />
+
+
+
+					<p:commandButton value="Create Account" style="margin:20px"
+						action="#{SignupDao.adduser(Signup)}" ajax="false" icon="pi pi-check"
+						iconPos="right" update="panel-signup"   onsubmit="return validateSecurityQuestions();"/>
+
+
+
+					<p:commandButton value="Reset" onclick="clearFormFields()"
+						style="margin:20px" ajax="false" iconPos="right"
+						update="panel-signup" />
+					<br />
+
+					
+						Existing User ?
+						<h:commandLink value="Login Here" action="LoginPage"
+						style="text-decoration:none;color:#2196f3;" immediate="true" />
+
+					<br />
+
+				</p:panel>
+			
+			</h:form>
+		</div>
+	</div>
+	<script>
+        function clearFormFields() {
+            document.getElementById("signupForm:mobileNo").value=null;
+            document.getElementById("signupForm:yourName").value = null;
+            document.getElementById("signupForm:userName").value = null;
+            document.getElementById("signupForm:email").value = null;
+            document.getElementById("signupForm:securityQuestion1").value=null;
+            document.getElementById("signupForm:securityAnswer1").value=null;
+            document.getElementById("signupForm:securityQuestion2").value=null;
+            document.getElementById("signupForm:securityAnswer2").value=null;
+           
+        
+        } 
+        function clearForm() {
+            document.getElementById("signupForm:mobileNo").value=null;
+            document.getElementById("signupForm:yourName").value=null;
+            document.getElementById("signupForm:userName").value=null;
+            document.getElementById("signupForm:email").value=null;
+            document.getElementById("signupForm:securityQuestion1").value=null;
+            document.getElementById("signupForm:securityAnswer1").value=null;
+            document.getElementById("signupForm:securityQuestion2").value=null;
+            document.getElementById("signupForm:securityAnswer2").value=null;
+            // Clearing the "dob" field
+            $("#signupForm\\:dob_input").val('');
+          }
+
+        $(document).ready(function() {
+            $('#securityQuestion1').on('change', function() {
+                if ($(this).val() !== '') {
+                    $('#securityAnswer1').val('');
+                }
+            });
+        });
+
+        
+
+        </script>
+        
+</h:body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Add Staff Booking</title>
+    <h:outputStylesheet name="css/styles.css" />
+    
+    <style>
+        /* Body Styling */
+   	body {
+			background-image: url(#{request.contextPath}/img/slot13.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			color: ;
+		}
+        .container {
+            width: 40%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: red;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        .form-group .error-message {
+            color: red;
+            margin-top: 5px;
+        }
+        
+        .form-actions {
+            text-align: center;
+        }
+        
+        .form-actions button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .form-actions a {
+            color: #000000;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+    </style>
+</h:head>
+<h:body>
+<center>
+    <div class="container">
+        <h2 class="title">Enter Details</h2>
+        <h:form>
+            <div class="form-group">
+                <h:outputLabel for="slotNumber" value="Selected slot:" />
+                <p:inputText id="slotNumber" value="#{param.slotNumber}" readonly="true" required="true" />
+                <h:message for="slotNumber" style="color: gold" />
+                #{admin.setSlotNumber(param.slotNumber)}
+            </div>
+
+            <div class="form-group">
+                <h:outputLabel for="vehicleNumber" value="Vehicle Number:" />
+                <h:inputText id="vehicleNumber" value="#{admin.vehicleNumber}" required="true" />
+                
+            </div>
+
+            <div class="form-group">
+                <h:outputLabel for="indate" value="InDate:" />
+                <p:calendar id="indate" value="#{admin.indate}" pattern="dd/MM/yyyy"
+                    showOn="button" view="year" required="true"
+                    requiredMessage="Enter booking date" mindate="@today" maxdate="30" />
+            </div>
+
+            <div class="form-group">
+                <h:outputLabel for="intime" value="InTime:" />
+                <p:inputText id="intime" value="#{admin.intime}" mask="99:99" placeholder="HH:mm" 
+                             onfocus="setDefaultTime(this)">
+                </p:inputText>
+            </div>
+
+            <h3 style="color: red">Here TWO WHEELER cost is "10" and FOUR WHEELER cost is "20"</h3>
+            <div class="form-group">
+                <h:outputLabel value="Vehicle Category:" />
+                <p:selectOneRadio id="vehiclecategory" required="true"
+                    value="#{admin.vehiclecategory}">
+                    <f:selectItems value="#{admin.vehicleCategoryAv}" size="40" />
+                </p:selectOneRadio>
+            </div>
+
+            <div class="form-actions">
+                <h:commandButton value="Book" action="#{admindao.Addadmin(admin,SignupDao.sig.userid)}" />
+            </div>
+                <h:messages globalOnly="true" style="color:red"/>
+
+            <br />
+            <br />
+
+            <div class="mb-10 formI" > 
+                <a href="AdminMenu.xhtml" style="color:black"> Back</a>
+            </div>
+        </h:form>
+       
+    </div>
+</center>
+    <script>
+        function setDefaultTime(inputField) {
+            var now = new Date();
+            var hours = now.getHours().toString().padStart(2, '0');
+            var minutes = now.getMinutes().toString().padStart(2, '0');
+            var currentTime = hours + ':' + minutes;
+            inputField.value = currentTime;
+        }
+    </script>
+</h:body>
+</html>

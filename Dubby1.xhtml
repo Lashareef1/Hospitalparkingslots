@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+<head>
+    <title>Realistic Parking Slots</title>
+    <link rel="stylesheet" type="text/css" href="style.css"></link>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: ;
+        padding: 20px;
+        background-image: url(#{request.contextPath}/img/slot9.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        /* background-attachment: scroll; */
+        background-attachment: fixed;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    .parking-lot {
+        margin-top: 20px;
+    }
+
+    .parking-row {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .parking-slot {
+        position: relative;
+        width: 120px;
+        height: 60px;
+        /*  background-color: #e0e0e0; */
+        border: 1px solid #ccc;
+        background-color: #333;
+        border-radius: 5px;
+    }
+
+    .car {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80px;
+        height: 40px;
+        background-color: #333;
+        border-radius: 5px;
+    }
+
+    .selected {
+        background-color: #ffcc66;
+        /* Add any additional styling for selected slots */
+    }
+
+    .font {
+        color: gold;
+    }
+    </style>
+</head>
+<body>
+	
+    <h1 class="font">FIRST FLOOR Parking Lot</h1>
+    <div class="parking-lot">
+        <div class="parking-row">
+            <div class="parking-slot" onclick="selectSlot('FF1')">FF1</div>
+            <div class="parking-slot" onclick="selectSlot('FF2')">FF2</div>
+            <div class="parking-slot" onclick="selectSlot('FF3')">FF3</div>
+            <div class="parking-slot" onclick="selectSlot('FF4')">FF4</div>
+            <div class="parking-slot" onclick="selectSlot('FF5')">FF5</div>
+        </div>
+        <div class="parking-row">
+            <div class="parking-slot" onclick="selectSlot('FF6')">FF6</div>
+            <div class="parking-slot" onclick="selectSlot('FF7')">FF7</div>
+            <div class="parking-slot" onclick="selectSlot('FF8')">FF8</div>
+            <div class="parking-slot" onclick="selectSlot('FF9')">FF9</div>
+            <div class="parking-slot" onclick="selectSlot('FF10')">FF10</div>
+        </div>
+        <div class="parking-row">
+            <div class="parking-slot" onclick="selectSlot('FF11')">FF11</div>
+            <div class="parking-slot" onclick="selectSlot('FF12')">FF12</div>
+            <div class="parking-slot" onclick="selectSlot('FF13')">FF13</div>
+            <div class="parking-slot" onclick="selectSlot('FF14')">FF14</div>
+            <div class="parking-slot" onclick="selectSlot('FF15')">FF15</div>
+        </div>
+        <div class="parking-row">
+            <div class="parking-slot" onclick="selectSlot('FF16')">FF16</div>
+            <div class="parking-slot" onclick="selectSlot('FF17')">FF17</div>
+            <div class="parking-slot" onclick="selectSlot('FF18')">FF18</div>
+            <div class="parking-slot" onclick="selectSlot('FF19')">FF19</div>
+            <div class="parking-slot" onclick="selectSlot('FF20')">FF20</div>
+        </div>
+    </div>
+    <h:form>
+        <h:commandButton action="ParkingMenu.xhtml" value="Back" />
+    </h:form>
+    <script src="script.js"></script>
+    <script>
+    function selectSlot(slotIdentifier) {
+    	
+        // Perform slot availability check here based on your requirements
+        // Replace with your logic
+
+		console.log(isSlotAvailable)
+		
+        if (isSlotAvailable) {
+            // Redirect to the next page with selected slot information
+            window.location.href = 'Staff.xhtml?slot=' + slotIdentifier;
+        } else {
+            console.log('Slot ' + slotIdentifier + ' is not available.');
+        }
+    }
+    </script>
+</body>
+</html>

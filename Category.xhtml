@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Category Details</title>
+    
+    <style>
+    	
+    </style>
+    
+</h:head>
+
+<h:body>
+
+<center>
+    <h:form prependId="false">
+    
+        Select Category:
+        <p:selectOneRadio id="category" required="true" value="#{category}">
+            <f:selectItem itemValue="STAFF" itemLabel="STAFF" />
+            <f:selectItem itemValue="TWO WHEELER" itemLabel="TWO WHEELER" />
+            <f:selectItem itemValue="FOUR WHEELER" itemLabel="FOUR WHEELER" />
+            <f:selectItem itemValue="AMBULANCE" itemLabel="AMBULANCE" />
+            
+        </p:selectOneRadio>
+        <br />
+            <h:commandButton value="Submit" action="#{admindao.selectedCategory(category)}" />
+        
+ </h:form>
+        </center>
+        <center>
+        <h:panelGroup rendered="#{admindao.category == 'STAFF'}">
+            <h1>Staff Details</h1>
+        
+        
+          <p:dataTable value="#{staffDao.showstaffdtls()}" var="hVal" rows="10" paginator="true" paginatorPosition="bottom">
+        <p:column headerText="UserName" sortBy="#{hVal.userName}" sortable="true">
+            <h:outputText value="#{hVal.userName}" />
+        </p:column>
+        <p:column headerText="UserID" >
+            <h:outputText value="#{hVal.userid}" />
+        </p:column>
+        <p:column headerText="Vehicle Number" >
+            <h:outputText value="#{hVal.vehicleNumber}" />
+        </p:column>
+        <p:column headerText="Vehicle Category" >
+            <h:outputText value="#{hVal.vehiclecategory}" />
+        </p:column>
+        <p:column headerText="Start date" >
+            <h:outputText value="#{hVal.startDate}" />
+        </p:column>
+        <p:column headerText="End date" >
+            <h:outputText value="#{hVal.endDate}" />
+        </p:column>
+        <p:column headerText="SlotNumber" >
+            <h:outputText value="#{hVal.slotNumber}" />
+        </p:column>
+    </p:dataTable>
+        </h:panelGroup>
+
+       <!--  <h:panelGroup rendered="#{admindao.category == 'ADMIN'}">
+            <h1>Admin Details</h1>
+            <h:dataTable value="#{admindao.showstaffdtls()}" var="hVal" border="1" style="background-color:white">
+                <h:column>
+                    <f:facet name="header">UserID</f:facet>
+                    <h:outputText value="#{hVal.userid}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Vehicle Number</f:facet>
+                    <h:outputText value="#{hVal.vehicleNumber}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Vehicle Category</f:facet>
+                    <h:outputText value="#{hVal.vehiclecategory}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Intime</f:facet>
+                    <h:outputText value="#{hVal.intime}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">SlotNumber</f:facet>
+                    <h:outputText value="#{hVal.slotNumber}" />
+                </h:column>
+            </h:dataTable>
+        </h:panelGroup> -->
+        
+        
+       <h:panelGroup rendered="#{admindao.category == 'TWO WHEELER'}">
+            <h1>TWO WHEELER Details</h1>
+            <p:dataTable value="#{admindao.showTWOWHEELERdetails()}" var="hVal" border="1" paginator="true" paginatorPosition="bottom">
+                <p:column headerText="UserId" >
+                    <h:outputText value="#{hVal.userid}" />
+                </p:column>
+                <p:column  headerText="Vehicle Number" >
+                    <h:outputText value="#{	hVal.vehicleNumber}" />
+                 </p:column>
+                 <p:column headerText="Vehicle Category" >
+                    <h:outputText value="#{hVal.vehiclecategory}" />
+                </p:column>
+           
+                <p:column headerText="SlotNumber" >
+                    <h:outputText value="#{hVal.slotNumber}" />
+                </p:column>
+            </p:dataTable>
+        </h:panelGroup> 
+        
+        
+       <h:panelGroup rendered="#{admindao.category == 'FOUR WHEELER'}">
+            <h1>FOUR WHEELER Details</h1>
+            <p:dataTable value="#{admindao.showFOURWHEELERdetails()}" var="hVal" rows="5" paginator="true" paginatorPosition="bottom">
+                <p:column headerText="UserID" >
+                    <h:outputText value="#{hVal.userid}" />
+                </p:column>
+                <p:column  headerText="Vehicle Number" >
+                    <h:outputText value="#{	hVal.vehicleNumber}" />
+                </p:column>
+                 <p:column headerText="Vehicle Category" >
+                    <h:outputText value="#{hVal.vehiclecategory}" />
+                </p:column>
+               <p:column headerText="SlotNumber" >
+                    <h:outputText value="#{hVal.slotNumber}" />
+                </p:column>
+                
+            </p:dataTable>
+   
+          
+        </h:panelGroup> 
+       
+        
+       <h:panelGroup rendered="#{admindao.category == 'AMBULANCE'}">
+            <h1>AMBULANCE Details</h1>
+            <p:dataTable value="#{admindao.showAMBULANCEdetails()}" var="hVal" border="1" rows="10" paginator="true" paginatorPosition="bottom" style="background-color:white">
+                <p:column headerText="UserId" sortBy="#{hVal.userid}" sortable="true">
+                    <h:outputText value="#{hVal.userid}" />
+                </p:column>
+                <p:column  headerText="Vehicle Number" >
+               
+                    <h:outputText value="#{	hVal.vehicleNumber}" />
+                </p:column>
+             <p:column headerText="Vehicle Category" >
+               
+                    <h:outputText value="#{hVal.vehiclecategory}" />
+                </p:column>
+             <p:column headerText="SlotNumber" >
+                    <h:outputText value="#{hVal.slotNumber}" />
+                </p:column>
+            </p:dataTable>
+        </h:panelGroup> 
+        
+        
+        
+       
+ <br />
+ 
+  <div class="mb-10 formI" > 
+      
+        <a href= "AdminMenu.xhtml"  style="color:red"> Back</a>
+			
+			</div>
+ </center>
+
+</h:body>
+
+</html>

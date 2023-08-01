@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+
+	<style>
+	
+  
+		/* Importing fonts from Google */
+
+/* Reseting */
+
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;`
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+   background-image: url("../img/slot2.jpg");
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-attachment: fixed;
+}
+
+.wrapper {
+    max-width: 350px;
+    min-height: 500px;
+    margin: 80px auto;
+    
+    padding: 40px 30px 30px 30px;
+    background-color: transperent;
+    border-radius: 100px;
+    box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff; 
+    	backdrop-filter: blur(10px);
+}
+
+.logo {
+    width: 80px;
+    margin: auto;
+}
+
+.logo img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0px 0px 3px #5f5f5f,
+        0px 0px 0px 5px #ecf0f3,
+        8px 8px 15px #a7aaa7,
+        -8px -8px 15px #fff;
+}
+
+.wrapper .name {
+    font-weight: 600;
+    font-size: 1.4rem;
+    letter-spacing: 1.3px;
+    padding-left: 10px;
+    color: #555;
+}
+
+.wrapper .form-field input {
+    width: 100%;
+    display: block;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.2rem;
+    color: #666;
+    padding: 10px 15px 10px 10px;
+    /* border: 1px solid red; */
+}
+
+.wrapper .form-field {
+     padding-left: 10px;
+ margin-bottom: 20px;
+    border-radius: 20px;
+    box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+}
+
+.wrapper .form-field .fas {
+    color: #555;
+}
+
+.wrapper .btn {
+    box-shadow: none;
+    width: 100%;
+    height: 40px;
+    background-color: #03A9F4;
+    color: #fff;
+    border-radius: 25px;
+    box-shadow: 3px 3px 3px #b1b1b1,
+        -3px -3px 3px #fff;
+    letter-spacing: 1.3px;
+}
+
+.wrapper .btn:hover {
+    background-color: #039BE5;
+}
+
+.wrapper a {
+    text-decoration: none;
+    font-size: 0.8rem;
+    color: #03A9F4;
+}
+
+.wrapper a:hover {
+    color: #039BE5;
+}
+
+@media(max-width: 380px) {
+    .wrapper {
+        margin: 30px 20px;
+        padding: 40px 15px 15px 15px;
+    }
+}
+	 </style> 
+</h:head>
+<h:body  onload="clearFormFields()">
+
+	<div class="wrapper">
+         <div class="logo">
+            <img src="../img/slot4.jpg"/>
+        </div> 
+        <div class="text-center mt-4 name"   style="color:black">
+            Login
+        </div>
+        <h:form id="loginForm"   class="p-3 mt-3"   ><br />
+      
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+              
+               <h:inputText id="Name" required="true" requiredMessage="Please Enter Your User Name*" value="#{Signup.userName}">
+			<p:tooltip id="toolTipFocus1" for="Name" value="Enter Your User Name." showEffect="clip" hideEffect="fold" position="top" ></p:tooltip>
+
+				</h:inputText>
+				<h:message for="Name" style="color:red" />
+				<p:watermark for="Name" value="User Name*" />
+            </div>
+            <h:outputText value="&nbsp;&nbsp;Password" />
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                
+                <h:inputSecret id="pass" required="true" requiredMessage="Enter Your Password" value="#{Signup.password}">
+				<p:tooltip id="toolTipFocus" for="pass" value="Enter Your Passcode." showEffect="clip" hideEffect="fold" position="top"></p:tooltip> 
+				</h:inputSecret>
+				<h:message for="pass" style="color:red" />
+				<p:watermark for="pass" value="Password*" />
+
+            </div>
+            Select Category:
+				<br />
+					<br />
+					<p:selectOneRadio id="category" required="true"
+						value="#{Signup.category}">
+						<f:selectItems value="#{Signup.categoryop}" size="40" />
+					</p:selectOneRadio>
+					<br />
+            
+           
+            <h:commandButton  value="Login" class="btn mt-3"
+						action="#{SignupDao.validateMe(Signup)}" oncomplete="clearFormFields()"/>
+				          
+       <p:growl id="messages" showDetail="true" life="3000" />
+               
+        </h:form><br></br>
+        <div class="mb-10 formI" > 
+        <center>
+        <a href= "Menu.xhtml"  style="color:black"> Back</a>
+			</center>
+			</div>
+       <br>
+       </br>
+		
+			<div class="text-center fs-6">ResetPassword only for staff:
+           <a href="Resetpassword.xhtml"   >ResetPassword</a>
+        </div>
+			
+			<div class="text-center fs-6" >ForgotPassword only for staff:
+           <a href="Forgotpassword.xhtml"   style="color:">ForgotPassword</a>
+        </div>
+			
+			
+		
+        <div class="text-center fs-6" style="color:red">Create New User account? 
+           <a href="signup.xhtml" style="color:black">Sign up</a>
+        </div>
+</div>
+<script>
+    function clearFormFields() {
+    	 document.getElementById("loginForm:Name").value=null;
+        // Reset the form fields after submission using PrimeFaces' resetInputs function
+        PF('loginForm').resetInputs();
+    }
+
+
+   
+</script>
+
+</h:body>
+</html>

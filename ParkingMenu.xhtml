@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</link>
+<h:outputStylesheet name="css/messages.css" />
+<style>
+body {
+ background-image: url(#{request.contextPath}/img/slot3.jpg);
+ background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  
+ 
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+  .ui-message-info {
+    color: White;
+}
+.navbar {
+  overflow: hidden;
+  background-color: #333; 
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.subnav {
+  float: left;
+  overflow: hidden;
+}
+
+.subnav .subnavbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .subnav:hover .subnavbtn {
+  background-color: red;
+}
+
+.subnav-content {
+  display: none;
+  position: absolute;
+  left: 0;
+  background-color: red;
+  width: 100%;
+  z-index: 1;
+}
+
+.subnav-content a {
+  float: left;
+  color: white;
+  text-decoration: none;
+}
+
+.subnav-content a:hover {
+  background-color: #eee;
+  color: black;
+}
+
+.subnav:hover .subnav-content {
+  display: block;
+  
+
+}
+</style>
+</h:head>
+<h:body>
+
+<div class="navbar">
+  <a href="Menu.xhtml">Home</a>
+ <!--  <div class="subnav">
+    <button class="subnavbtn">About <i class="fa fa-caret-down"></i></button>
+    <div class="subnav-content">
+      <a href="#company">Company</a>
+ 
+    </div>
+  </div>  -->
+  <div class="subnav">
+    <button class="subnavbtn">Bookslot<i class="fa fa-caret-down"></i></button>
+    <div class="subnav-content">
+      <a href="Parkinglot.xhtml">GroundFloor</a>
+      <a href="Parkinglot2.xhtml">FirstFloor</a>
+      
+      
+    </div>
+  </div> 
+  
+  <a href="#contact">Contact</a>
+  <a href="LoginPage.xhtml">Logout</a>
+  <a href="" class="appointment-btn scrollto" style="color:white">
+			<span class="d-none d-md-inline" ></span> #{SignupDao.sig.userName}</a>
+			<br />
+</div>
+
+<div style="padding:0 16px">
+  
+</div>
+
+ 
+<h:form>
+	
+		<center>
+			<h1>Staff Details</h1>
+		<br>
+		</br>
+		
+		
+		
+		<p:dataTable value="#{staffDao.showstaffdetails(SignupDao.sig.userid)}" var="hVal" border="3" style="background-color:white">
+
+    <p:column headerText="UserID">
+        <h:outputText value="#{hVal.userid}" />
+    </p:column>
+    <p:column headerText="Booking ID">
+        <h:outputText value="#{hVal.bookingId}" />
+    </p:column>
+    <p:column headerText="VehicleNumber">
+        <h:outputText value="#{hVal.vehicleNumber}" />
+    </p:column>
+    <p:column headerText="StartDate">
+        <h:outputText value="#{hVal.startDate}" />
+    </p:column>
+    <p:column headerText="EndDate">
+        <h:outputText value="#{hVal.endDate}" />
+    </p:column>
+    <p:column headerText="SlotNumber">
+        <h:outputText value="#{hVal.slotNumber}" />
+    </p:column>
+    <p:column headerText="Discontinue">
+        <h:commandButton value="Discontinue" action="#{staffDao.calculateRemainingAmount(staff)}" />
+    </p:column>
+    <p:column headerText="Renewal">
+        <h:commandButton value="Renewal" action="#{staffDao.renewBooking(staff)}" disabled="#{!staffDao.isExpired(hVal.endDate)}" />
+    </p:column>
+    
+</p:dataTable>
+
+			 <h:messages globalOnly="true"  />
+				</center>
+	</h:form>
+</h:body>
+</html>
